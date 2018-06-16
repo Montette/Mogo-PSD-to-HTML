@@ -4,11 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,400i,700,800i|Roboto:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
     <title>Document</title>
 </head>
 <body>
     <header class="header">
-        <nav class="header__nav nav"></nav>
+        <nav class="header__nav nav">
+            <div class="nav__wrapper">
+                <div class="nav__logo"><a class='nav__logo-link' href=''>MoGo</a></div>
+                <div class="nav__burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav__menu">
+                    <li class="nav__item">
+                        <a href="" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="" class="nav__link">Service</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="" class="nav__link">Work</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="" class="nav__link">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="" class="nav__link">Contact</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="" class="nav__link nav__link--shop"><img src="images/shopping-cart-icon.png" alt="shop"></a>
+                    </li>
+                    <li class="nav__item">
+                        <form class="nav__form">
+                            <input type="search" class="nav__input">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+            <div class="header__carousel carousel">
+                <div class="carousel__item">
+                        <p class="carousel__text">Creative Template</p>
+                        <h1 class="carousel__header-text">Welcome <br>to MoGo</h1>
+                        <a href="" class="carousel__link"><span class='carousel__link--span'>learn more</span></a>
+                </div>
+                <div class="carousel__item">
+                        <p class="carousel__text">Our work</p>
+                        <h1 class="carousel__header-text">see<br> our work</h1>
+                        <hr class="carousel__underline">
+                        <a href="" class="carousel__link">learn more</a>
+                </div>
+                <div class="carousel__item">
+                        <p class="carousel__text">About us</p>
+                        <h1 class="carousel__header-text">read <br> our story</h1>
+                        <hr class="carousel__underline">
+                        <a href="" class="carousel__link">learn more</a>
+                </div>
+                <div class="carousel__item">
+                        <p class="carousel__text">Contact with us</p>
+                        <h1 class="carousel__header-text">Contact <br>with our team</h1>
+                        <hr class="carousel__underline">
+                        <a href="" class="carousel__link">learn more</a>
+                </div>
+                <div class="carousel__navigation navigation">
+                    <div class="navigation__item">
+                        <div class="navigation__bar" id="bar-1"></div>
+                        <p class="navigation__title"><span class='navigation__bold-number'>01</span> intro</p>
+                    </div>
+                    <div class="navigation__item">
+                        <div class="navigation__bar" id="bar-2"></div>
+                        <p class="navigation__title"><span class='navigation__bold-number'>02</span> work</p>
+                    </div>
+                    <div class="navigation__item">
+                        <div class="navigation__bar" id="bar-3"></div>
+                        <p class="navigation__title"><span class='navigation__bold-number'>03</span> about</p>
+                    </div>
+                    <div class="navigation__item">
+                        <div class="navigation__bar" id="bar-4"></div>
+                        <p class="navigation__title"><span class='navigation__bold-number'>04</span> contact</p>
+                    </div>
+                </div>
+            </div>
+        
     </header>
+    <div class="d"></div>
+    <script src='js/script.js'></script>
+    <script src='js/carousel.js'></script>
 </body>
 </html>
