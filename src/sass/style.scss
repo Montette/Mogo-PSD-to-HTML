@@ -25,8 +25,9 @@
 
 @mixin paragraph {
     font-family: 'Roboto', sans-serif;
-    color: #707070;
+    color: #999999;
     line-height: 24px;
+    font-size: 15px;
 }
 
 @mixin sectionTitle {
@@ -450,6 +451,87 @@ ul {
         font-weight: bold;
     }
     
+}
+
+.services {
+    &__container {
+        @include container;
+    }
+    &__title {
+        @include sectionTitle;
+        text-align: center;
+        position: relative;
+        &:after {
+            @include underline(3px, 60px, 130%);
+            background-color: $pink;
+        }
+        &--decorative {
+            @include decorativeTitle
+        }
+    }
+    &__items-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+        padding: 0 10px;
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            height: 1px;
+            width: 100%;
+            background-color: #dddddd;
+
+        }
+    }
+    &__item {
+        width:33%;
+        padding-left: 60px;
+        padding-right: 30px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        &--photography {
+            background: url(../images/photography.png) left top no-repeat;
+        }
+        &--web-design {
+            background: url(../images/web_design.png) left top no-repeat;
+        }
+        &--creativity {
+            background: url(../images/creativity.png) left top no-repeat;
+        }
+        &--seo {
+            background: url(../images/seo.png) left top no-repeat;
+        }
+        &--css {
+            background: url(../images/css-html.png) left top no-repeat;
+        }
+        &--digital {
+            background: url(../images/digital.png) left top no-repeat;
+        }
+        
+        
+
+        
+
+        
+
+        
+        
+        
+    }
+    &__item-title {
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+    &__item-text {
+        @include paragraph;
+        font-size: 14px;
+    }
 }
 @keyframes roll {
     0% {
