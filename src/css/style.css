@@ -482,6 +482,38 @@ ul {
   font-size: 15px;
   font-size: 14px; }
 
+.design {
+  background: url(../images/design-bg.jpg) center;
+  background-size: cover;
+  height: 990px;
+  padding-top: 70px; }
+  .design__title {
+    text-transform: uppercase;
+    font-size: 35px;
+    position: relative;
+    margin-bottom: 65px;
+    color: #333333;
+    line-height: 45px;
+    position: relative;
+    text-align: center; }
+    .design__title:after {
+      content: '';
+      position: absolute;
+      height: 3px;
+      width: 60px;
+      top: 130%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      background-color: white;
+      display: block;
+      background-color: #e88283; }
+    .design__title--decorative {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 24px;
+      text-transform: none;
+      font-weight: 400; }
+
 @-webkit-keyframes roll {
   0% {
     width: 0; }
