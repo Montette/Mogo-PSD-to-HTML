@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,14 @@
 
     <title>Document</title>
 </head>
+
 <body>
     <header class="header">
         <nav class="header__nav nav">
             <div class="nav__wrapper">
-                <div class="nav__logo"><a class='nav__logo-link' href=''>MoGo</a></div>
+                <div class="nav__logo">
+                    <a class='nav__logo-link' href=''>MoGo</a>
+                </div>
                 <div class="nav__burger">
                     <span></span>
                     <span></span>
@@ -38,7 +42,9 @@
                         <a href="" class="nav__link">Contact</a>
                     </li>
                     <li class="nav__item">
-                        <a href="" class="nav__link nav__link--shop"><img src="images/shopping-cart-icon.png" alt="shop"></a>
+                        <a href="" class="nav__link nav__link--shop">
+                            <img src="images/shopping-cart-icon.png" alt="shop">
+                        </a>
                     </li>
                     <li class="nav__item">
                         <form class="nav__form">
@@ -47,54 +53,127 @@
                     </li>
                 </ul>
             </div>
-            </nav>
-            <div class="header__carousel carousel">
-                <div class="carousel__item">
-                        <p class="carousel__text">Creative Template</p>
-                        <h1 class="carousel__header-text">Welcome <br>to MoGo</h1>
-                        <a href="" class="carousel__link"><span class='carousel__link--span'>learn more</span></a>
-                </div>
-                <div class="carousel__item">
-                        <p class="carousel__text">Our work</p>
-                        <h1 class="carousel__header-text">see<br> our work</h1>
-                        <hr class="carousel__underline">
-                        <a href="" class="carousel__link">learn more</a>
-                </div>
-                <div class="carousel__item">
-                        <p class="carousel__text">About us</p>
-                        <h1 class="carousel__header-text">read <br> our story</h1>
-                        <hr class="carousel__underline">
-                        <a href="" class="carousel__link">learn more</a>
-                </div>
-                <div class="carousel__item">
-                        <p class="carousel__text">Contact with us</p>
-                        <h1 class="carousel__header-text">Contact <br>with our team</h1>
-                        <hr class="carousel__underline">
-                        <a href="" class="carousel__link">learn more</a>
-                </div>
-                <div class="carousel__navigation navigation">
-                    <div class="navigation__item">
-                        <div class="navigation__bar" id="bar-1"></div>
-                        <p class="navigation__title"><span class='navigation__bold-number'>01</span> intro</p>
-                    </div>
-                    <div class="navigation__item">
-                        <div class="navigation__bar" id="bar-2"></div>
-                        <p class="navigation__title"><span class='navigation__bold-number'>02</span> work</p>
-                    </div>
-                    <div class="navigation__item">
-                        <div class="navigation__bar" id="bar-3"></div>
-                        <p class="navigation__title"><span class='navigation__bold-number'>03</span> about</p>
-                    </div>
-                    <div class="navigation__item">
-                        <div class="navigation__bar" id="bar-4"></div>
-                        <p class="navigation__title"><span class='navigation__bold-number'>04</span> contact</p>
-                    </div>
+        </nav>
+        <div class="header__carousel carousel">
+            <div class="carousel__item active">
+                <div class="carousel__item-container">
+                    <p class="carousel__text">Creative Template</p>
+                    <h1 class="carousel__header-text">Welcome
+                        <br>to MoGo</h1>
+                    <a href="" class="carousel__link">
+                        <span class='carousel__link--span'>learn more</span>
+                    </a>
                 </div>
             </div>
-        
+            <div class="carousel__item">
+                <div class="carousel__item-container">
+                    <p class="carousel__text">Our work</p>
+                    <h1 class="carousel__header-text">see
+                        <br> our work</h1>
+                    <hr class="carousel__underline">
+                    <a href="" class="carousel__link">learn more</a>
+                </div>
+            </div>
+            <div class="carousel__item">
+                <div class="carousel__item-container">
+                    <p class="carousel__text">About us</p>
+                    <h1 class="carousel__header-text">read
+                        <br> our story</h1>
+                    <hr class="carousel__underline">
+                    <a href="" class="carousel__link">learn more</a>
+                </div>
+            </div>
+            <div class="carousel__item">
+                <div class="carousel__item-container">
+                    <p class="carousel__text">Contact with us</p>
+                    <h1 class="carousel__header-text">Contact
+                        <br>with our team</h1>
+                    <hr class="carousel__underline">
+                    <a href="" class="carousel__link">learn more</a>
+                </div>
+            </div>
+            <div class="carousel__navigation navigation">
+                <div class="navigation__item">
+                    <div class="navigation__bar"></div>
+                    <p class="navigation__title" role="button" tabindex="0">
+                        <span class='navigation__bold-number'>01</span> intro</p>
+                </div>
+                <div class="navigation__item">
+                    <div class="navigation__bar"></div>
+                    <p class="navigation__title" role="button" tabindex="0">
+                        <span class='navigation__bold-number'>02</span> work</p>
+                </div>
+                <div class="navigation__item">
+                    <div class="navigation__bar active"></div>
+                    <p class="navigation__title" role="button" tabindex="0">
+                        <span class='navigation__bold-number'>03</span> about</p>
+                </div>
+                <div class="navigation__item">
+                    <div class="navigation__bar"></div>
+                    <p class="navigation__title" role="button" tabindex="0">
+                        <span class='navigation__bold-number'>04</span> contact</p>
+                </div>
+            </div>
+
+        </div>
+
     </header>
-    <div class="d"></div>
+    <section class="about">
+        <h2 class="about__title">
+            <span class="about__title--decorative">What we do</span>
+            <br>story about us</h2>
+        <p class="about__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni eos culpa dolores quis vero itaque soluta amet cum
+            molestias? Modi dolorem cumque totam, temporibus omnis nisi enim cum et fuga!Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit.</p>
+        <div class="about__gallery">
+            <div class="about__img-container">
+                <img class='about__img' src="images/about1.jpg" alt="">
+                <div class="about__layer">
+                </div>
+                <a href='#' class="about__link">Super team</a>
+            </div>
+            <div class="about__img-container">
+                <img class='about__img' src="images/about2.jpg" alt="">
+                <div class="about__layer">
+                </div>
+                <a href='#' class="about__link">Super team</a>
+            </div>
+            <div class="about__img-container">
+                <img class='about__img' src="images/about3.jpg" alt="">
+                <div class="about__layer">
+                </div>
+                <a href='#' class="about__link">Super team</a>
+            </div>
+        </div>
+    </section>
+    <section class="counter">
+        <div class="counter__container">
+            <div class="counter__box">
+                <p class="counter__text">
+                    <span class="counter__number" data-max="42">0</span>webdesign projects</p>
+            </div>
+            <div class="counter__box">
+                <p class="counter__text">
+                    <span class="counter__number" data-max="123">0</span>happy clients</p>
+            </div>
+            <div class="counter__box">
+                <p class="counter__text">
+                    <span class="counter__number" data-max="15">0</span>award winners</p>
+            </div>
+            <div class="counter__box">
+                <p class="counter__text" >
+                    <span class="counter__number" data-max="99">0</span>cups of coffee</p>
+            </div>
+            <div class="counter__box">
+                <p class="counter__text">
+                    <span class="counter__number" data-max="24">0</span>members</p>
+            </div>
+        </div>
+
+    </section>
     <script src='js/script.js'></script>
     <script src='js/carousel.js'></script>
+    <script src='js/counter.js'></script>
 </body>
+
 </html>

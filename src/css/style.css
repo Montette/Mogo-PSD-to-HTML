@@ -99,14 +99,16 @@ ul {
   height: 100vh;
   width: 100vw;
   position: relative;
-  overflow: hidden; }
-  .carousel__item {
-    background-image: url(../images/banner1.png);
-    height: 100vh;
+  overflow: hidden;
+  background-image: url(../images/banner1.png);
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; }
+  .carousel__item-container {
+    height: 100%;
     width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -121,6 +123,39 @@ ul {
         -ms-flex-direction: column;
             flex-direction: column;
     text-align: center; }
+  .carousel__item {
+    height: 100vh;
+    width: 100vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    position: relative;
+    -webkit-animation: 1s ease-in-out;
+            animation: 1s ease-in-out;
+    display: none; }
+    .carousel__item.active {
+      display: block; }
+    .carousel__item.next {
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 100%; }
+    .carousel__item.to-left {
+      -webkit-animation-name: left;
+              animation-name: left; }
+    .carousel__item.to-right {
+      -webkit-animation-name: right;
+              animation-name: right;
+      animation-direction: reverse; }
+    .carousel__item.from-left {
+      -webkit-animation-name: left;
+              animation-name: left;
+      animation-direction: reverse; }
+    .carousel__item.from-right {
+      -webkit-animation-name: right;
+              animation-name: right; }
   .carousel__text {
     font-family: 'Kaushan Script', cursive;
     font-size: 60px; }
@@ -215,8 +250,10 @@ ul {
       top: 0;
       z-index: -1; }
     .navigation__bar.animate {
-      -webkit-animation: roll 5s linear infinite;
-              animation: roll 5s linear infinite; }
+      -webkit-animation: roll 3s linear infinite;
+              animation: roll 3s linear infinite;
+      -webkit-animation-delay: 1s;
+              animation-delay: 1s; }
   .navigation__title {
     margin-top: 20px;
     text-transform: uppercase;
@@ -228,17 +265,169 @@ ul {
 .inactive {
   display: none; }
 
+.about {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 0 90px 0;
+  text-align: center; }
+  .about__title {
+    text-transform: uppercase;
+    font-size: 35px;
+    position: relative;
+    margin-bottom: 65px;
+    color: #333333;
+    line-height: 45px; }
+    .about__title:after {
+      content: '';
+      position: absolute;
+      height: 3px;
+      width: 60px;
+      top: 130%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      background-color: white;
+      display: block;
+      background-color: #e88283; }
+    .about__title--decorative {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 24px;
+      text-transform: none;
+      font-weight: 400; }
+  .about__text {
+    font-family: 'Roboto', sans-serif;
+    color: #707070;
+    line-height: 24px; }
+  .about__gallery {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 90px; }
+  .about__img-container {
+    background-color: #95e1d3;
+    height: 250px;
+    width: 380px;
+    position: relative; }
+    .about__img-container:hover .about__img {
+      top: -10px;
+      left: -10px; }
+    .about__img-container:hover .about__layer {
+      top: -10px;
+      left: -10px;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(219, 117, 116, 0.9)), color-stop(1%, rgba(219, 118, 116, 0.9)), to(rgba(227, 204, 124, 0.9)));
+      background: linear-gradient(to bottom, rgba(219, 117, 116, 0.9) 0%, rgba(219, 118, 116, 0.9) 1%, rgba(227, 204, 124, 0.9) 100%); }
+    .about__img-container:hover .about__link {
+      opacity: 1; }
+  .about__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: .4s;
+    transition: .4s; }
+  .about__layer {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    -webkit-transition: all .4s;
+    transition: all .4s; }
+  .about__link {
+    position: absolute;
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    background: url(../images/about-icon.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    padding-top: 25px;
+    opacity: 0;
+    -webkit-transition: .6s;
+    transition: .6s;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase; }
+
+.counter {
+  background-color: #95e1d3; }
+  .counter__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 0 90px 0;
+    height: 230px;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .counter__box {
+    border-left: 1px solid #fff;
+    width: 20%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
+    .counter__box:nth-of-type(5) {
+      border-right: 1px solid #fff; }
+  .counter__text {
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase; }
+  .counter__number {
+    display: block;
+    font-size: 50px;
+    font-weight: bold; }
+
 @-webkit-keyframes roll {
   0% {
     width: 0; }
   100% {
-    width: 240px; } }
+    width: 250px; } }
 
 @keyframes roll {
   0% {
     width: 0; }
   100% {
-    width: 240px; } }
+    width: 250px; } }
 
-.d {
-  height: 100vh; }
+@-webkit-keyframes left {
+  from {
+    left: 0; }
+  to {
+    left: -100%; } }
+
+@keyframes left {
+  from {
+    left: 0; }
+  to {
+    left: -100%; } }
+
+@-webkit-keyframes right {
+  from {
+    left: 100%; }
+  to {
+    left: 0; } }
+
+@keyframes right {
+  from {
+    left: 100%; }
+  to {
+    left: 0; } }

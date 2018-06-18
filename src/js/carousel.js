@@ -1,112 +1,118 @@
+// const items = document.querySelectorAll('.carousel__item');
+// const navigationItems = [...document.querySelectorAll('.navigation__item')];
+// const navigationBar = document.querySelectorAll('.navigation__bar');
 
-// const carouselNavBars = document.querySelectorAll('.navigation__bar')
- 
- 
- 
-//  const currentNavBar = () => {
-//     [...carouselNavBars].forEach(item => item.classList.remove('animate'));
-//         item.classList.remove('is-active');
-//         [...carouselNavBars][current].classList.add('animate');
-// }
+const headerCarouselItems = document.querySelectorAll('.carousel__item');
+const headerCarouselNavigationItems = [...document.querySelectorAll('.navigation__title')];
 
 
-
-
-
-var numSlides = 4,
-		currentSlideIndex = 0,
-		running = false,
-	 	slideSelector = [...document.querySelectorAll('.carousel__item')],
-		indicatorSelector = [...document.querySelectorAll('.navigation__bar')],
-		currentSlide,
-		newSlide,
-		mode;
-
-
-        
-	function animateSlides (newMode) {
-		// prevents function from running while an animation is active
-		if (running) {
-			return false;
-		}
-		running = true;
-
-		//define target slides factoring in passed-in mode argument
-		mode = newMode;
-		setTargets(newMode);
-
-		// set indicators to next state
-		indicatorSelector[currentSlideIndex].classList.add('animate');
-		indicatorSelector[newSlideIndex].classList.remove('animate');
-
-		//set staging position
-		newSlide.style.left = mode === 'prev' ? '-100%' : '100%';
-		currentSlide.style.left = '0%';
-
-		newSlide.classList.remove("inactive");
-	
-		//begins both animations
-		animate(newSlide);
-		animate(currentSlide);
-	}
+const startHeaderCarousel = (items, navigationItems) => {
+let currentItem = 0;
+let isEnabled = true;
+const navigationBar = document.querySelectorAll('.navigation__bar');
 
 
 
-    const nextSlide = function () {
-        animateSlides('next');
-    };
-    const prevSlide  = function () {
-        animateSlides('prev');
+const changeCurrentSlide = (n) => {
+    currentItem = (n + items.length) % items.length;
+}
+
+const hideSlide = (direction) => {
+    clearInterval(cartouselInterval);
+    isEnabled = false;
+    items[currentItem].classList.add(direction);
+    navigationBar[currentItem].classList.remove('animate');
+    items[currentItem].addEventListener('animationend', function () {
+        this.classList.remove('active', direction);
+    });
+    cartouselInterval = setInterval(autoCarousel, 4000);
+}
+
+const showSlide = (direction) => {
+    clearInterval(cartouselInterval);
+    items[currentItem].classList.add(direction);
+    items[currentItem].classList.add('next');
+    navigationBar[currentItem].classList.add('animate');
+    items[currentItem].addEventListener('animationend', function () {
+        this.classList.remove('next', direction);
+        this.classList.add('active');
+        isEnabled = true;
+    });
+    cartouselInterval = setInterval(autoCarousel, 4000);
+}
+
+const nextItem = (n) => {
+    hideSlide('to-left');
+    changeCurrentSlide(n + 1);
+    showSlide('from-right');
+}
+
+const previousItem = (n) => {
+    hideSlide('to-right');
+    changeCurrentSlide(n - 1);
+    showSlide('from-left');
+}
+
+const goToItem = (n) => {
+    if (n < currentItem) {
+        hideSlide('to-right');
+        currentItem = n;
+        showSlide('from-left');
+    } else {
+        hideSlide('to-left');
+        currentItem = n;
+        showSlide('from-right');
     }
+}
 
 
-	// defines target slides according to direction of animation 
-	function setTargets() {
-		// get the index of the next slide. hard reset to 0 or numSlides (-1) so slideshow can loop back
-		if (mode === "prev") {
-			newSlideIndex = slideSelector[currentSlideIndex - 1] === undefined ? (numSlides - 1) : currentSlideIndex - 1;
-		} else {
-			newSlideIndex = slideSelector[currentSlideIndex + 1] === undefined ? 0 : currentSlideIndex + 1;
-		}
+// navigationItems.forEach((item, index) => item.addEventListener('click', function (event) {
+//     if (index !== currentItem && index < navigationBar.length && event.target == item.children[1]) {
+//         goToItem(index);
+//     }
+// }));
 
-		currentSlide = slideSelector[currentSlideIndex];
-		newSlide = slideSelector[newSlideIndex];
-	}
+navigationItems.forEach((item, index) => item.addEventListener('click', function (event) {
+    if (index !== currentItem && index < navigationBar.length ) {
+        goToItem(index);
+    }
+}));
 
-	function animate (slide) {
-		var i = 0;
 
-		// animation interval
-		var animationInt = setInterval(function(){
-			//animate one tick according to direction
-			slide.style.left = mode === 'prev' ? ( parseInt(slide.style.left) + 2 ) + "%"
-												: ( parseInt(slide.style.left) - 2 ) + "%";
-			
-			i++;
-			if(i >= 50) {
-				stopAnimation();
-			}
-		}, 7);
+navigationItems.forEach((element, index) => {
+    element.addEventListener('keypress', (event) =>{
+        if (event.key === " " || event.key === "Enter") {
+            event.preventDefault();
+            goToItem(index)
+        }
+    })
+    
+});
 
-		// clears interval, returns all elements to a nominal state
-		function stopAnimation () {
-			currentSlide.classList.add('inactive');
-			newSlide.style.left = '0%';
-			clearInterval(animationInt);
-			currentSlideIndex = newSlideIndex;	
-			running = false;
-		}
-	}
+// const nav = document.querySelector('.navigation');
 
-	// sets the container height to the height of slides. height not defined in css. 
-	// window.onload = setContainerSize;
-	// window.onresize = setContainerSize;
+// nav.addEventListener('click', (event)=> {
 
-	// function setContainerSize() {
-	// 	var container = document.getElementsByClassName('che-slideshow')[0];
-	// 	container.style.height = getComputedStyle(slideSelector[currentSlideIndex]).height;
-	// }
+    
+//             let clickedIndex = [...event.currentTarget.children].indexOf(event.target) >= 0 ? [...event.currentTarget.children].indexOf(event.target):[...event.currentTarget.children].indexOf(event.target);
+//             if (clickedIndex !== currentItem && clickedIndex < navigationBar.length && event.target != event.currentTarget ) {
+//                 console.log(clickedIndex);
+//             goToItem(clickedIndex);
+//             }
 
-	// expose the private animate function & call with appropriate argument
-	
-  animate();
+    
+//     console.log(event.currentTarget);
+//     console.log(event.target)
+// })
+
+function autoCarousel() {
+    if (isEnabled) {
+        nextItem(currentItem);
+    }
+}
+
+let cartouselInterval = setInterval(autoCarousel, 5000);
+
+}
+
+startHeaderCarousel(headerCarouselItems, headerCarouselNavigationItems)
