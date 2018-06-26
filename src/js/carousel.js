@@ -4,15 +4,61 @@
 
 const headerCarouselItems = document.querySelectorAll('.carousel__item');
 const headerCarouselNavigationItems = [...document.querySelectorAll('.navigation__title')];
+const navBar = document.querySelectorAll('.navigation__bar');
+
+const opinionsCarouselItems = document.querySelectorAll('.opinions-carousel--1 > .opinions-carousel__item');
+const opinionsArrowLeft = document.querySelector('.opinions-carousel--1 > .opinions-carousel__arrow--left');
+const opinionsArrowRight = document.querySelector('.opinions-carousel--1 > .opinions-carousel__arrow--right');
+
+const opinionsCarouselItems2 = document.querySelectorAll('.opinions-carousel--2 > .opinions-carousel__item');
+const opinionsArrowLeft2 = document.querySelector('.opinions-carousel--2 > .opinions-carousel__arrow--left');
+const opinionsArrowRight2 = document.querySelector('.opinions-carousel--2 > .opinions-carousel__arrow--right');
 
 
-const startHeaderCarousel = (items, navigationItems) => {
+
+
+
+const startHeaderCarousel = (items, navigationItems, arrowLeft, arrowRight, navigationBar) => {
 let currentItem = 0;
 let isEnabled = true;
-const navigationBar = document.querySelectorAll('.navigation__bar');
 
 
 
+
+
+window.addEventListener('keyup', (e)=> {
+    if(e.keyCode == 9){
+        console.log('otline11');
+        headerCarouselNavigationItems.forEach((item)=> {
+            item.classList.add('carousel-outline');
+            console.log('otline');
+        })
+    }
+})
+
+headerCarouselNavigationItems.forEach(el => {
+    el.addEventListener('blur', ()=> {
+        console.log('blur');
+        headerCarouselNavigationItems.forEach(el => {
+            el.classList.remove('carousel-outline');
+        })
+    })
+})  
+
+
+
+// const navigationBar = document.querySelectorAll('.navigation__bar');
+
+
+// window.addEventListener('keypress', (e)=> {
+//     if(e.keyCode === 9){
+//         console.log('otline11');
+//         headerCarouselNavigationItems.forEach((item)=> {
+//             item.classList.add('outline');
+//             console.log('otline');
+//         })
+//     }
+// })
 const changeCurrentSlide = (n) => {
     currentItem = (n + items.length) % items.length;
 }
@@ -21,7 +67,9 @@ const hideSlide = (direction) => {
     clearInterval(cartouselInterval);
     isEnabled = false;
     items[currentItem].classList.add(direction);
+    if(navigationBar!== undefined) {
     navigationBar[currentItem].classList.remove('animate');
+    }
     items[currentItem].addEventListener('animationend', function () {
         this.classList.remove('active', direction);
     });
@@ -32,7 +80,9 @@ const showSlide = (direction) => {
     clearInterval(cartouselInterval);
     items[currentItem].classList.add(direction);
     items[currentItem].classList.add('next');
+    if(navigationBar!== undefined) {
     navigationBar[currentItem].classList.add('animate');
+    }
     items[currentItem].addEventListener('animationend', function () {
         this.classList.remove('next', direction);
         this.classList.add('active');
@@ -72,12 +122,16 @@ const goToItem = (n) => {
 //     }
 // }));
 
+if (navigationItems !== undefined) {
+
 navigationItems.forEach((item, index) => item.addEventListener('click', function (event) {
     if (index !== currentItem && index < navigationBar.length ) {
         goToItem(index);
     }
 }));
+}
 
+if (navigationItems !== undefined) {
 
 navigationItems.forEach((element, index) => {
     element.addEventListener('keypress', (event) =>{
@@ -88,31 +142,40 @@ navigationItems.forEach((element, index) => {
     })
     
 });
+}
 
-// const nav = document.querySelector('.navigation');
-
-// nav.addEventListener('click', (event)=> {
-
+if (arrowLeft !== undefined) {
     
-//             let clickedIndex = [...event.currentTarget.children].indexOf(event.target) >= 0 ? [...event.currentTarget.children].indexOf(event.target):[...event.currentTarget.children].indexOf(event.target);
-//             if (clickedIndex !== currentItem && clickedIndex < navigationBar.length && event.target != event.currentTarget ) {
-//                 console.log(clickedIndex);
-//             goToItem(clickedIndex);
-//             }
-
+arrowLeft.addEventListener('click',()=> {
+    previousItem(currentItem);
     
-//     console.log(event.currentTarget);
-//     console.log(event.target)
-// })
+})
+}
+
+if (arrowRight !== undefined) {
+arrowRight.addEventListener('click',()=> {
+    nextItem(currentItem);
+    
+})
+}
+
 
 function autoCarousel() {
     if (isEnabled) {
+        
         nextItem(currentItem);
     }
 }
+
+
 
 let cartouselInterval = setInterval(autoCarousel, 5000);
 
 }
 
-startHeaderCarousel(headerCarouselItems, headerCarouselNavigationItems)
+startHeaderCarousel(headerCarouselItems, headerCarouselNavigationItems, undefined, undefined, navBar);
+
+startHeaderCarousel(opinionsCarouselItems, undefined, opinionsArrowLeft, opinionsArrowRight, undefined);
+
+startHeaderCarousel(opinionsCarouselItems2, undefined, opinionsArrowLeft2, opinionsArrowRight2, undefined);
+
