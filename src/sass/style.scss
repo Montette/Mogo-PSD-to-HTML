@@ -1558,7 +1558,10 @@ ul {
         margin-right: 30px;
         @include screen("phone"){
             margin-bottom: 10px;
-            margin-right: 0;
+            margin-right: 15px;
+        }
+        @media only screen and(max-width: 475px) {
+            margin-right:0;
         }
     }
     &__name {
@@ -1629,11 +1632,22 @@ ul {
     &__content {
         @include flexPosition(space-between, stretch);
         flex-wrap: wrap;
+        @include screen("tabletAndPhone"){
+            justify-content: center;
+        }
     }
 }
 
 .blog-post {
     width: 380px;
+    @include screen("tabletAndPhone"){
+        margin: 30px 20px;
+    }
+    @include screen("phone"){
+        margin: 30px 0;
+        width: auto;
+        max-width: 80%;
+    }
 
     &__link {
         @include otherTitle;
@@ -1680,6 +1694,11 @@ ul {
         font-size: 30px;
         }
         
+    }
+    &__img {
+        @include screen("phone"){
+            width: 100%;
+        }
     }
 
 }
