@@ -918,6 +918,9 @@ ul {
         @include screen ("tabletAndPhone"){
             padding: 70px 60px 90px 60px;
         }
+        @include screen ("phone"){
+            flex-direction: column;    
+        }
     }
     &__item {
         // height: 100vh;
@@ -928,9 +931,19 @@ ul {
     }
     &__img {
         display: block;
+        &--1 {
+            @include screen ("phone"){
+                padding-left: 40px;
+                margin-bottom: 20px;
+            }
+        }
         &--2 {
             border-radius: 50%;
+            @include screen ("phone"){
+                margin-bottom: 20px;  
+            }
         }
+        
     }
     &__content-wrapper {
         padding-left: 40px;
@@ -953,9 +966,11 @@ ul {
         }
         &--left {
             right: 15%;
-            transform: rotate(-45deg) translateY(50%);
+            transform: rotate(-45deg) translateY(-50%);
             @include screen ("tabletAndPhone"){
-                right: 20px;
+                right: 25px;
+                top: 50%;
+                
             }
         }
     }
@@ -977,6 +992,13 @@ ul {
             @include underline(2px, 50px, 50%);
             left: -35px;
             background-color: $pink;
+        }
+    }
+    &--1{
+        & .opinions-carousel__item-container{
+            @include screen ("phone"){
+                align-items: flex-start;
+            }
         }
     }
 }

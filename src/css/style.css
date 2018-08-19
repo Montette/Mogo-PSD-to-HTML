@@ -838,6 +838,12 @@ ul {
     @media all and (max-width: 1199px) {
       .opinions-carousel__item-container {
         padding: 70px 60px 90px 60px; } }
+    @media all and (max-width: 767px) {
+      .opinions-carousel__item-container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column; } }
   .opinions-carousel__item {
     width: 100vw;
     position: relative;
@@ -846,8 +852,15 @@ ul {
     display: none; }
   .opinions-carousel__img {
     display: block; }
+    @media all and (max-width: 767px) {
+      .opinions-carousel__img--1 {
+        padding-left: 40px;
+        margin-bottom: 20px; } }
     .opinions-carousel__img--2 {
       border-radius: 50%; }
+      @media all and (max-width: 767px) {
+        .opinions-carousel__img--2 {
+          margin-bottom: 20px; } }
   .opinions-carousel__content-wrapper {
     padding-left: 40px; }
   .opinions-carousel__arrow {
@@ -868,11 +881,12 @@ ul {
           left: 20px; } }
     .opinions-carousel__arrow--left {
       right: 15%;
-      -webkit-transform: rotate(-45deg) translateY(50%);
-              transform: rotate(-45deg) translateY(50%); }
+      -webkit-transform: rotate(-45deg) translateY(-50%);
+              transform: rotate(-45deg) translateY(-50%); }
       @media all and (max-width: 1199px) {
         .opinions-carousel__arrow--left {
-          right: 20px; } }
+          right: 25px;
+          top: 50%; } }
   .opinions-carousel__text {
     margin-bottom: 25px;
     font-size: 20px;
@@ -902,6 +916,11 @@ ul {
       display: block;
       left: -35px;
       background-color: #e88283; }
+  @media all and (max-width: 767px) {
+    .opinions-carousel--1 .opinions-carousel__item-container {
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start; } }
 
 .service-description__container {
   max-width: 1200px;
@@ -1301,10 +1320,6 @@ ul {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
-<<<<<<< HEAD
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
-=======
     padding: 0 15px;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
@@ -1319,7 +1334,6 @@ ul {
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center; } }
->>>>>>> ca2a3750910d30de02fb0340700781648905ce14
   .logo__item {
     display: -webkit-box;
     display: -ms-flexbox;
