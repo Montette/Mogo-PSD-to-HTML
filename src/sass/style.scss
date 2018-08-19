@@ -936,6 +936,9 @@ ul {
                 padding-left: 40px;
                 margin-bottom: 20px;
             }
+            @include screen ("smallPhone"){
+                padding-left: 0;
+            }
         }
         &--2 {
             border-radius: 50%;
@@ -947,6 +950,10 @@ ul {
     }
     &__content-wrapper {
         padding-left: 40px;
+        @include screen ("smallPhone"){
+            padding-left: 0;
+        }
+
     }
     &__arrow {
         position: absolute;
@@ -968,7 +975,7 @@ ul {
             right: 15%;
             transform: rotate(-45deg) translateY(-50%);
             @include screen ("tabletAndPhone"){
-                right: 25px;
+                right: 20px;
                 top: 50%;
                 
             }
@@ -982,6 +989,9 @@ ul {
         color: $grey;
         font-weight: 300;
         line-height: 26px;
+        @include screen("phone"){
+            font-size: 16px;
+        }
     }
     &__author {
         @include decorativeTitle;
@@ -1463,19 +1473,13 @@ ul {
             opacity: 1;
         }
     }
-    &__photo {
-       
+    &__photo {    
         width: 100%;
-    
         height: calc(100% - 2px);
-        // @include screen("phone"){
-        //     height: auto;
-        // }
     }
     &__layer {
         position: absolute;
         height: calc(100% - 2px);
-        // height: 100%;
         width: 100%;
         top: 0;
         left: 0;
@@ -1485,22 +1489,12 @@ ul {
         flex-direction: column;
         @include flexPosition(center, center);
         text-align: center;
-       
-        // &--big {
-        //     height: calc(100% - 7px);
-        // }
     }
     &__link {
         @include otherTitle;
         color: #fff;
         margin-top: 10px;
         &--small {
-            // font-family: 'Roboto', sans-serif;
-            // font-weight: 300;
-            // font-style: italic;
-            // color: #fff;
-            // font-size: 14px;
-            // text-transform: none;
             @include otherTitleItalic(14px, #fff);
         }
     }
@@ -1526,38 +1520,62 @@ ul {
 
 .clients {
     background-image: url('../images/clients_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 
     &__container {
         @include container;
     }
     &__content {
-        // margin: 40px 0;
         margin-bottom: 40px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        @include screen("phone"){
+            justify-content: center;
+           
+        }
         
     }
     &__item {
         width: 45%;
-        // margin: 50px 0;
         margin-top: 90px;
-        display: flex;
-        
+        display: flex;     
         align-items: center;
+        @include screen("tabletAndPhone"){
+            margin: 90px 10px 0 10px;
+        }
+        @include screen("phone"){
+            width: 60%;
+        }
+        @media only screen and(max-width: 475px) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
     &__image {
         border-radius: 50%;
         margin-right: 30px;
+        @include screen("phone"){
+            margin-bottom: 10px;
+            margin-right: 0;
+        }
     }
     &__name {
         @include otherTitle;
         position: relative;
+        @media only screen and(max-width: 475px) {
+            text-align: center;
+        }
         &:after {
             @include underline(3px, 60px, 140%);
             background-color: $pink;
             left: 0;
             transform: translateX(0);
+            @media only screen and(max-width: 475px) {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
         &--small {
             @include otherTitleItalic(15px, #333333);
@@ -1570,6 +1588,12 @@ ul {
         font-weight: 300;
         margin-top: 30px;
         line-height: 23px;
+        @include screen("tabletAndPhone"){
+            padding: 0;
+        }
+        @media only screen and(max-width: 475px) {
+            text-align: center;
+        }
     }
     &__title{
         @include sectionTitle;
@@ -1577,6 +1601,7 @@ ul {
         &:after {
             @include underline(3px,60px,130%);
             background-color: $pink;
+          
         }
         &--decorate {
             @include decorativeTitle;
