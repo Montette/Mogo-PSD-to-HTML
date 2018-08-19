@@ -80,6 +80,6 @@ burger.addEventListener('click', ()=> {
     active = false;
 }
 
-
+document.querySelector('.nav__menu').classList.toggle('visible');
 })
 

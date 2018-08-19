@@ -1,6 +1,56 @@
 // mixins
 
 
+@mixin screen($size) {
+    $smallMonitor: "(min-width: 974px) and (max-width: 1400px)";
+    // $shortMonitor: "(min-height: 200px) and (max-height: 750px)";
+    $tablet: "(min-width: 768px) and (max-width: 1199px)";
+    $tabletAndPhone: "(max-width: 1199px)";
+    $phone: "(max-width: 767px)";
+    $phoneLandscape: "(min-width: 443px) and (max-width: 767px) and (max-height: 450px)";
+    $smallPhone: "(max-width: 393px)";
+
+    @if $size==smallMonitor {
+        @media all and #{$smallMonitor} {
+            @content;
+        }
+    }
+
+    @else if $size==tablet {
+        @media all and #{$tablet} {
+            @content;
+        }
+    }
+    @else if $size==tabletAndPhone {
+        @media all and #{$tabletAndPhone} {
+            @content;
+        }
+    }
+    @else if $size==phoneLandscape {
+        @media all and #{$phoneLandscape} {
+            @content;
+        }
+    }
+
+    @else if $size==phone {
+        @media all and #{$phone} {
+            @content;
+        }
+    }
+    @else if $size==smallPhone {
+        @media all and #{$smallPhone} {
+            @content;
+        }
+    }
+    @else {
+        @media all and #{$size} {
+            @content;
+        }
+    }
+}
+
+
+
 $pink: #e88283;
 $aqua: #95e1d3;
 $gradient: linear-gradient(to bottom, rgba(219, 117, 116, 0.9) 0%, rgba(219, 118, 116, 0.9) 1%, rgba(227, 204, 124, 0.9) 100%);
@@ -34,7 +84,15 @@ $lightGrey: #f8f8f8;
     font-family: 'Roboto', sans-serif;
     color: $grey;
     line-height: 2.4rem;
+    line-height: 24px;
     font-size: 15px;
+    @include screen ("tablet"){
+        padding: 0 40px;
+    }
+    @include screen ("phone"){
+        padding: 0 20px;
+        line-height: 20px;
+    }
 }
 
 @mixin sectionTitle {
@@ -44,6 +102,9 @@ $lightGrey: #f8f8f8;
     margin-bottom: 65px;
     color: #333333;
     line-height: 4.5rem;
+    @include screen ("tabletAndPhone"){
+        margin-bottom: 33px;
+    }
 }
 
 @mixin decorativeTitle {
@@ -71,59 +132,6 @@ $lightGrey: #f8f8f8;
 }
 
 
-@mixin screen($size) {
-    $smallMonitor: "(min-width: 974px) and (max-width: 1400px)";
-    // $shortMonitor: "(min-height: 200px) and (max-height: 750px)";
-    $tablet: "(min-width: 768px) and (max-width: 1199px)";
-    $tabletAndPhone: "(max-width: 1199px)";
-    $phone: "(max-width: 767px)";
-    $phoneLandscape: "(min-width: 443px) and (max-width: 767px)";
-    $smallPhone: "(max-width: 393px)";
-
-    @if $size==smallMonitor {
-        @media all and #{$smallMonitor} {
-            @content;
-        }
-    }
-
-    // @else if $size==shortMonitor {
-    //     @media all and #{$smallMonitor} {
-    //         @content;
-    //     }
-    // }
-
-    @else if $size==tablet {
-        @media all and #{$tablet} {
-            @content;
-        }
-    }
-    @else if $size==tabletAndphone {
-        @media all and #{$tabletAndPhone} {
-            @content;
-        }
-    }
-    @else if $size==phoneLandscape {
-        @media all and #{$phoneLandscape} {
-            @content;
-        }
-    }
-
-    @else if $size==phone {
-        @media all and #{$phone} {
-            @content;
-        }
-    }
-    @else if $size==smallPhone {
-        @media all and #{$smallPhone} {
-            @content;
-        }
-    }
-    @else {
-        @media all and #{$size} {
-            @content;
-        }
-    }
-}
 
 
 
@@ -143,6 +151,9 @@ html {
     @include screen("smallMonitor") {
         font-size: 8px;
     }
+    @include screen("tabletAndPhone") {
+        font-size: 6px;
+    }
     
 }
 
@@ -153,7 +164,9 @@ html {
 // }
 
 
-
+body {
+    overflow-x: hidden;
+}
 a {
     text-decoration: none;
     color: inherit;
@@ -189,20 +202,51 @@ ul {
     height: 100px;
     @include flexPosition(center, center);
     z-index: 1000;
+    @include screen ("tabletAndPhone") {
+        height: 70px;
+    }
     &__wrapper {
         @include flexPosition(space-between, center);
         max-width: 1200px;
         width: 100%;
+        @include screen ("tabletAndPhone") {
+            padding: 0 20px;
+        }
     }
     &__menu {
         @include flexPosition(space-between, center);
         text-transform: uppercase;
+        @include screen ("tabletAndPhone") {
+           
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -500px);
+            background: linear-gradient(to bottom, rgba(219, 117, 116, 1) 4%, rgba(219, 118, 116, 1) 10%, rgba(227, 204, 124, 0.9) 100%);
+          
+            // background: linear-gradient(to bottom, #db7574 4%,#db7674 24%,#e3cc7c 99%);
+            width: 100%;
+            transition: 1s;
+            
+        }
+        &.visible {
+            transform: translate(-50%, 10px);
+        }
     }
     &__item {
         margin-left: 40px;
+        @include screen ("tabletAndPhone") {
+        //    margin-left: 0;
+        //    margin-bottom: 20px;
+           margin: 25px 0 15px 0;
+        }
     }
     &__link {
         font-size: 1.6rem;
+        
         &:hover {
             color: #f0d088;
             border-bottom: 3px solid #f0d088;
@@ -218,10 +262,15 @@ ul {
                 border-bottom: none;
             }
         }
+        @include screen ("tabletAndPhone") {
+            font-size: 2.4rem;
+         }
     }
     &__logo {
         font-size: 30px;
         font-weight: bold;
+        position: relative;
+        z-index: 10;
     }
     &__input {
         background-image: url(../images/search.png);
@@ -247,6 +296,70 @@ ul {
     }
 }
 
+.nav__burgerSpan {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    display: block;
+    // position: relative;
+	width: 40px;
+	height: 4px;
+	border-radius: 2px;
+    background: #fafafa;
+    cursor: pointer;
+    
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        border-radius: 2px;
+        left: 0;
+        top: 10px;
+        height: 100%;
+        width: 100%;
+        background: #fafafa;
+
+    }
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        border-radius: 2px;
+        left: 0;
+        bottom: 10px;
+        height: 100%;
+        width: 100%;
+        background: #fafafa;
+
+    }
+    &.active {
+        animation: animationOne 1s ease forwards;
+        &:before {
+            animation: burgerBottom 1s ease forwards;
+            
+            
+        }
+        &:after {
+            animation: burgerTop 1s ease forwards;
+        }
+
+    }
+    &.disActive {
+        animation: animationOneReverse 1s ease forwards;
+    
+    &:before {
+        animation: burgerBottomReverse 1s ease forwards;
+        
+        
+    }
+    &:after {
+        animation: burgerTopReverse 1s ease forwards;
+    }
+}
+
+}
+
 .checked {
     width: 150px;
     height: 20px;
@@ -269,6 +382,7 @@ ul {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+   
     &__item-container {
         height: 100%;
         width: 100%;
@@ -292,6 +406,12 @@ ul {
         @include screen ("smallMonitor"){
             font-size: 4.5rem;
         }
+        @include screen ("tablet") {
+            font-size: 4rem;
+        }
+        @include screen ("phone") {
+            font-size: 3.5rem;
+        }
         
     }
     &__header-text {
@@ -308,10 +428,24 @@ ul {
             font-size: 8rem;
             line-height: 8rem;
         }
+        @include screen ("tablet") {
+            font-size: 7rem;
+            line-height: 7rem;
+        }
+        @include screen ("phone") {
+            font-size: 6rem;
+            line-height: 6rem;
+        }
+        @include screen ("phoneLandscape"){
+            margin-top: 1rem;
+        }
         &::after {
             @include underline(6px, 70px, 125%);
             @include screen ("smallMonitor"){
                 @include underline(6px, 70px, 120%);
+            }
+            @include screen ("phoneLandscape"){
+                @include underline(6px, 70px, 110%);
             }
         }
     }
@@ -324,18 +458,39 @@ ul {
         height: 45px;
         width: 180px;
         line-height: 45px;
+        // height: 4.5rem;
+        // width: 18rem;
+        // line-height: 4.5rem;
         text-transform: uppercase;
         font-weight: bold;
         margin-top: 40px;
-        font-size: 1.6rem;
+        font-size: 16px;
         border: 2px solid rgba(255, 255, 255, 0.7);
         overflow: hidden;
+     
         @include screen ("smallMonitor"){
             margin-top: 17px;
             height: 40px;
             width: 170px;
-            line-height: 40px;
+            line-height: 35px;
+            font-size: 15px;
         }
+        @include screen ("tabletAndPhone"){
+            margin-top: 17px;
+            height: 35px;
+            width: 150px;
+            line-height: 35px;
+            font-size: 14px;
+        }
+        @include screen ("phone"){
+            margin-top: 35px;
+            width: 140px;
+        
+            @include screen ("phoneLandscape"){
+                margin-top: 5px;
+            }
+        }
+      
         
         
         &:before {
@@ -375,10 +530,33 @@ ul {
     top: 90%;
     width: 1300px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     transform: translateX(-50%);
+    padding: 0 50px;
+    @include screen("tablet") {
+        // padding: 0 120px;
+        width: 800px;
+    }
+    @include screen("phone") {
+        width: 400px;
+        top: 86%;
+    }
+    @include screen ("phoneLandscape"){
+        top: 82%;;
+    }
     &__item {
         width: 250px;
+        @include screen("smallMonitor") {
+            width: 230px;
+        }
+        @include screen("tablet") {
+            width: 150px;
+        }
+        @include screen("phone") {
+            
+            text-align: center;
+            
+        }
     }
     &__bar {
         position: relative; // border: 1px solid rgba(0, 0, 0, 0.8);
@@ -397,10 +575,30 @@ ul {
             left: 0;
             top: 0;
             z-index: -1;
+            @include screen("smallMonitor") {
+                width: 230px;
+            }
+            @include screen("tablet") {
+                width: 150px;
+            }
+            @include screen("phone") {
+                width: 10px;
+                border-radius: 50%;
+                
+            }
         }
         &.animate {
             animation: roll 3s linear infinite;
             animation-delay: 1s;
+            @include screen("phone") {
+                animation: rollPhone 3s linear infinite;
+            animation-delay: 1s;
+            }
+          
+        }
+        @include screen("phone") {
+            margin: 0 auto;
+            right: 5px;
         }
     }
     &__title {
@@ -416,10 +614,23 @@ ul {
                 border-bottom: 2px solid #fff;
             }
         }
+        @include screen("tabletAndPhone") {
+            font-size: 2.13rem;
+        }
     }
+    
     &__bold-number {
         font-weight: bold;
-        font-size: 20px;
+        font-size: 2rem;
+      
+        @include screen("tablet") {
+            font-size: 2.6rem;
+            
+        }
+        @include screen("phone") {
+            font-size: 2.5rem;
+            display:block;
+        }
     }
 }
 
@@ -433,6 +644,7 @@ ul {
 .about {
     @include container;
     text-align: center;
+    
     &__title {
         @include sectionTitle;
         &:after {
@@ -448,14 +660,22 @@ ul {
     }
     &__gallery {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         flex-wrap: wrap;
         margin-top: 90px;
+        @include screen("tabletAndPhone") {
+            justify-content: center;
+        }
     }
     &__img-container {
         background-color: $aqua;
         height: 250px;
         width: 380px;
+        margin: 0 10px;
+        // width: 33%;
+        @include screen("tabletAndPhone") {
+            margin: 0 10px 20px 10px;;
+        }
         position: relative; // transition: .5s;
         &:hover .about__img {
             top: -10px;
@@ -512,6 +732,16 @@ ul {
         height: 230px;
         padding: 0;
         display: flex; // justify-content: space-between;
+        flex-wrap: wrap;
+        @include screen ("tablet") {
+            height: 200px;
+        }
+        @include screen ("phone") {
+            height: 130px;
+        }
+        @include screen ("smallPhone") {
+            height: 100px;
+        }
     }
     &__box {
         border-left: 1px solid #fff;
@@ -520,6 +750,9 @@ ul {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        @include screen ("phone") {
+            padding: 0 15px;
+        }
         &:nth-of-type(5) {
             border-right: 1px solid #fff;
         }
@@ -534,6 +767,9 @@ ul {
         display: block;
         font-size: 5rem;
         font-weight: bold;
+        @include screen ("phone") {
+            font-size: 4rem;;
+        }
     }
 }
 
@@ -556,7 +792,7 @@ ul {
     &__items-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         position: relative;
         padding: 0 10px;
         &:after {
@@ -567,6 +803,15 @@ ul {
             height: 1px;
             width: 100%;
             background-color: #dddddd;
+            @include screen ("tabletAndPhone") {
+                display: none;
+            }
+        }
+        @include screen ("tabletAndPhone") {
+            padding-left: 35px;
+        }
+        @include screen ("smallPhone") {
+            padding-left: 10px;
         }
     }
     &__item {
@@ -575,6 +820,16 @@ ul {
         padding-right: 30px;
         margin-top: 50px;
         margin-bottom: 50px;
+        @include screen("tablet") {
+            width: 45%;
+            margin-top: 60px;
+            margin-bottom: 10px;
+        }
+        @include screen("phone") {
+            width: 70%;
+            margin-top: 60px;
+            margin-bottom: 0px;
+        }
         &--photography {
             background: url(../images/photography.png) left top no-repeat;
         }
@@ -601,6 +856,9 @@ ul {
     &__item-text {
         @include paragraph;
         font-size: 14px;
+        @include screen("tabletAndPhone") {
+            padding-left: 0;
+        }
     }
 }
 
@@ -609,6 +867,12 @@ ul {
     background-size: cover;
     height: 990px;
     padding-top: 70px;
+    @include screen ("tablet") {
+        height: 800px;
+    }
+    @include screen ("phone") {
+        height: 700px;
+    }
     &__title {
         @include sectionTitle;
         position: relative;
@@ -732,16 +996,55 @@ ul {
     &__content {
         display: flex;
         margin-top: 90px;
+        // flex-wrap: wrap;
+        padding-right: 10px;
+        padding-left: 10px;
+        @include screen (tabletAndPhone) {
+        @include flexPosition(center, center)
+        }
+        @media screen and (max-width: 880px) {
+            flex-wrap: wrap;
+        }
+        
+    }
+    &__image {
+        width: 50%;
+        min-height: 356px;
+        vertical-align: baseline;
+        @media screen and (max-width: 880px) {
+            width: 70%;
+        }
+        @include screen ("phone") {
+            min-height: 0;
+            width: 90%;
+        }
+        
     }
 }
 
 .accordion {
     width: 50%;
     display: flex;
+    min-height: 360px;
     flex-direction: column;
     justify-content: space-between;
+    // @include screen("tablet") {
+    //     min-height: 0;
+    // }
+    @media screen and (max-width: 880px) {
+        width: 70%;
+        min-height: 0;
+    }
+    @include screen ("phone") {
+        width: 90%;
+        min-height: 0;
+    }
     &__container {
         padding-left: 20px;
+        @media screen and (max-width: 880px) {
+            padding-left: 0;
+            margin-top: 10px;
+            }
     }
     &__body {
         height: 0px;
@@ -759,6 +1062,10 @@ ul {
         height: 52px;
         position: relative;
         padding: 18px 0 15px 50px;
+        @include screen(tablet) {
+            height: 45px;
+            padding: 15px 0 15px 50px;
+        }
         &:focus {
             outline: none;
         }
@@ -815,6 +1122,9 @@ ul {
         @include paragraph;
         font-weight: 300;
         font-style: italic;
+        @include screen ("tablet") {
+            padding-left: 5px;
+        }
         &::-webkit-scrollbar {
             background-color: transparent;
             width: 5px;
@@ -983,7 +1293,8 @@ ul {
         @include container;
         padding: 60px 5px; // display: flex;
         // justify-content: space-between;
-        @include flexPosition(space-between, stretch)
+        @include flexPosition(space-between, stretch);
+        flex-wrap: wrap;
     }
     &__item {
         // display: inline-flex;
@@ -1178,6 +1489,7 @@ ul {
     }
     &__content {
         @include flexPosition(space-between, stretch);
+        flex-wrap: wrap;
     }
 }
 
@@ -1421,76 +1733,22 @@ ul {
     height: 30px;
     width: 45px;
     // border: 1px solid black;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-
-}
-
-.nav__burgerSpan {
     // position: absolute;
-    // top: 50%;
-    // left: 0;
-    display: block;
+    // top: 45px;
+    // right: 40px;
+    // display: flex;
     position: relative;
-	width: 40px;
-	height: 4px;
-	border-radius: 2px;
-    background: #fafafa;
+    // justify-content: center;
+    // align-items: center;
     cursor: pointer;
-    
-    &:after {
-        content: '';
+    display: none;
+    @include screen("tabletAndPhone") {
         display: block;
-        position: absolute;
-        border-radius: 2px;
-        left: 0;
-        top: 10px;
-        height: 100%;
-        width: 100%;
-        background: #fafafa;
+    }
 
-    }
-    &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        border-radius: 2px;
-        left: 0;
-        bottom: 10px;
-        height: 100%;
-        width: 100%;
-        background: #fafafa;
-
-    }
-    &.active {
-        animation: animationOne 1s ease forwards;
-        &:before {
-            animation: burgerBottom 1s ease forwards;
-            
-            
-        }
-        &:after {
-            animation: burgerTop 1s ease forwards;
-        }
-
-    }
-    &.disActive {
-        animation: animationOneReverse 1s ease forwards;
-    
-    &:before {
-        animation: burgerBottomReverse 1s ease forwards;
-        
-        
-    }
-    &:after {
-        animation: burgerTopReverse 1s ease forwards;
-    }
 }
 
-}
+
 
 @keyframes burgerBottom {
 	0%, 50% { transform: translateY(0px) rotate(0deg); opacity: 1,  }
@@ -1544,7 +1802,17 @@ ul {
         width: 0;
     }
     100% {
-        width: 250px;
+        width:100%;
+    }
+    
+}
+
+@keyframes rollPhone {
+    0% {
+        width: 10px;
+    }
+    100% {
+        width:10px;
     }
     
 }
