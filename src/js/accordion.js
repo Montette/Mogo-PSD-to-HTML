@@ -1,17 +1,12 @@
-// const accordion = function () {
 
     const accTitle = [...document.querySelectorAll(".accordion__header")];
     const clickedEl= [...document.querySelectorAll(".accordion__clickEl")];
     const accContent = [...document.querySelectorAll(".accordion__body")];
 
-    
 
     window.onload = function () {
         accTitle[0].click();
     }
-
-
-
 
     window.addEventListener('keyup', (e)=> {
         if(e.keyCode == 9){
@@ -19,23 +14,9 @@
                 item.classList.add('accordion__header--outline');
             })
         }
-    })
-    
-//    accTitle.forEach(el => {
-//         el.addEventListener('blur', ()=> {
-//             console.log('blur');
-//             accTitle.forEach(el => {
-//                 el.classList.remove('outlinee');
-//             })
-//         })
-//     })  
-    
-    
-    
-
+    }) 
 
     accTitle.forEach((acc, index) => {
-
         acc.addEventListener("click", (e) => {
             console.log('aa');
                 for (var i = 0; i < accContent.length; i++) {
@@ -43,13 +24,8 @@
                     accTitle[i].classList.remove('rotate');
                 }
                 accContent[index].classList.add('accordion__body--open');
-                accTitle[index].classList.add('rotate');
-    
-                
+                accTitle[index].classList.add('rotate');        
             }
-
-            
-
         )
 
         acc.addEventListener('blur', ()=> {
@@ -60,28 +36,6 @@
         })
     })
 
-
-
-
-
-
-
-
-
-    
-
-    // accTitle.forEach((acc, index) => {
-    //     acc.addEventListener('focus', ()=> {
-    //         acc.classList.remove('noFocus');
-    //     })
-        
-    // });
-
-    // accTitle.forEach((acc, index) => {
-    //     acc.classList.add('noFocus');
-    // });
-
-
     accTitle.forEach((acc, index) => {
 
         acc.addEventListener("keypress", (event) => {
@@ -89,11 +43,9 @@
                 event.preventDefault();
                 for (var i = 0; i < accContent.length; i++) {
                     accContent[i].classList.remove('accordion__body--open');
-                    // accContent[i].previousSibling.classList.remove('rotate');
                     accTitle[i].classList.remove('rotate');
                 }
                 accContent[index].classList.add('accordion__body--open');
-                // accContent[index].previousSibling.classList.add('rotate');
                 accTitle[index].classList.add('rotate');
             }
             }
@@ -101,9 +53,3 @@
     })
 
 
-
-
-// }
-
-
-// accordion();

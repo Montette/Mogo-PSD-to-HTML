@@ -1,13 +1,11 @@
 const container = document.querySelector('.counter');
 const counter = [...document.querySelectorAll('.counter__number')];
 
-
 const counterStart = ()=> {
     counter.forEach(element => {
         let amount = 0;
         let topPosition = (container.offsetTop + element.offsetHeight) / 2;
             if((topPosition) <= Math.round(scrollY)) {
-          
             let goCounter = setInterval(function(){
                 if(amount <= element.dataset.max) {
                     element.textContent = amount++;
@@ -19,6 +17,5 @@ const counterStart = ()=> {
         }      
     })
 }
-
 
 document.addEventListener('scroll', counterStart);

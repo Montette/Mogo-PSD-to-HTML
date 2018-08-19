@@ -1236,6 +1236,10 @@ ul {
     .team__img-container {
       margin-right: 10px;
       margin-left: 10px; } }
+  @media all and (max-width: 767px) {
+    .team__img-container {
+      height: 300px;
+      width: 254px; } }
   .team__img-container:hover .team__image {
     top: -10px;
     left: -10px; }
@@ -1762,7 +1766,7 @@ ul {
       margin: 30px 0;
       width: auto;
       max-width: 80%; } }
-  .blog-post__link {
+  .blog-post__title {
     font-size: 14px;
     font-weight: 400;
     color: #333333;
@@ -1891,19 +1895,57 @@ ul {
         -ms-flex-pack: justify;
             justify-content: space-between;
     padding-bottom: 60px;
-    border-bottom: 1px solid #e5e5e5; }
+    border-bottom: 1px solid #e5e5e5;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
   .footer__column {
     width: 30%; }
     .footer__column--social-media {
       width: 38%; }
+      @media all and (max-width: 1199px) {
+        .footer__column--social-media {
+          width: 100%;
+          margin-bottom: 40px; } }
     .footer__column--blog {
       margin-top: 20px; }
+      @media all and (min-width: 768px) and (max-width: 1199px) {
+        .footer__column--blog {
+          width: 50%;
+          padding: 0 20px; } }
+      @media all and (max-width: 767px) {
+        .footer__column--blog {
+          width: 100%;
+          padding: 0 30px; } }
     .footer__column--gallery {
       margin-top: 20px;
       width: 23%; }
+      @media all and (min-width: 768px) and (max-width: 1199px) {
+        .footer__column--gallery {
+          width: 50%; } }
+      @media all and (max-width: 767px) {
+        .footer__column--gallery {
+          width: 100%;
+          padding: 0 30px; } }
+  @media all and (max-width: 767px) {
+    .footer__gallery {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center; } }
+  .footer__gall-img {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
   .footer__title {
     font-size: 46px;
     color: #cccccc; }
+    @media all and (max-width: 1199px) {
+      .footer__title {
+        text-align: center; } }
   .footer__text {
     font-family: 'Roboto', sans-serif;
     color: #999999;
@@ -1927,6 +1969,9 @@ ul {
     text-transform: none;
     position: relative;
     margin-bottom: 40px; }
+    @media all and (max-width: 1199px) {
+      .footer__followers {
+        text-align: center; } }
     .footer__followers:after {
       content: '';
       position: absolute;
@@ -1946,6 +1991,9 @@ ul {
     margin-top: 35px;
     text-align: left;
     height: 38px; }
+    @media all and (max-width: 1199px) {
+      .footer__form {
+        text-align: center; } }
   .footer__input {
     border: 1px solid #e5e5e5;
     height: 100%;
@@ -2056,7 +2104,12 @@ ul {
 
 .follow__link {
   color: #95e1d3;
-  margin-left: 10px; }
+  margin-left: 10px;
+  font-size: 18px; }
+
+@media all and (max-width: 1199px) {
+  .follow {
+    text-align: center; } }
 
 .nav__burger {
   height: 30px;
@@ -2069,7 +2122,8 @@ ul {
       display: block; } }
 
 @-webkit-keyframes burgerBottom {
-  0%, 50% {
+  0%,
+  50% {
     -webkit-transform: translateY(0px) rotate(0deg);
             transform: translateY(0px) rotate(0deg);
     opacity: 1; }
@@ -2087,7 +2141,8 @@ ul {
     opacity: 1; } }
 
 @keyframes burgerBottom {
-  0%, 50% {
+  0%,
+  50% {
     -webkit-transform: translateY(0px) rotate(0deg);
             transform: translateY(0px) rotate(0deg);
     opacity: 1; }
@@ -2149,7 +2204,8 @@ ul {
     -webkit-transform: translateY(-10px);
             transform: translateY(-10px);
     opacity: 0; }
-  51%, 100% {
+  51%,
+  100% {
     -webkit-transform: translateY(-10px);
             transform: translateY(-10px);
     opacity: 0; } }
@@ -2163,7 +2219,8 @@ ul {
     -webkit-transform: translateY(-10px);
             transform: translateY(-10px);
     opacity: 0; }
-  51%, 100% {
+  51%,
+  100% {
     -webkit-transform: translateY(-10px);
             transform: translateY(-10px);
     opacity: 0; } }
@@ -2261,7 +2318,8 @@ ul {
             transform: rotate(0deg); } }
 
 @-webkit-keyframes animationTwo {
-  0%, 50% {
+  0%,
+  50% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg); }
   75% {
@@ -2272,7 +2330,8 @@ ul {
             transform: rotate(405deg); } }
 
 @keyframes animationTwo {
-  0%, 50% {
+  0%,
+  50% {
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg); }
   75% {
